@@ -1,0 +1,397 @@
+SQL> SELECT ACTNO, AMOUNT
+  2  FROM DEPOSIT;
+SELECT ACTNO, AMOUNT
+       *
+ERREUR à la ligne 1 :
+ORA-00904: "ACTNO" : identificateur non valide 
+
+
+SQL> F
+SP2-0042: commande inconnue "F" - reste de la ligne ignoré.
+SQL> SELECT A_NO, AMOUNT
+  2  FROM DEPOSIT;
+
+      A_NO     AMOUNT                                                           
+---------- ----------                                                           
+       101       7000                                                           
+       102       5000                                                           
+       103       6500                                                           
+       104       8000                                                           
+       105       7500                                                           
+       106       5500                                                           
+       100       1000                                                           
+       107       1000                                                           
+       108       5000                                                           
+       109       7000                                                           
+
+10 lignes sélectionnées.
+
+SQL> DESCRIBE DEPOSIT;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ A_NO                                      NOT NULL NUMBER
+ CNAME                                              VARCHAR2(20)
+ BNAME                                              VARCHAR2(20)
+ AMOUNT                                             NUMBER(10,2)
+ DEPOSIT_DATE                                       DATE
+
+SQL> SELECT CNAME
+  2  FROM CUSTOMERS
+  3  WHERE CITY = 'BOMBAY';
+
+CNAME                                                                           
+---------------                                                                 
+SHIVANI                                                                         
+KRANTI                                                                          
+NAREN                                                                           
+
+SQL> SELECT *
+  2  FROM ITEM_MASTER
+  3  WHERE PRICE > 500;
+FROM ITEM_MASTER
+     *
+ERREUR à la ligne 2 :
+ORA-00942: Table ou vue inexistante 
+
+
+SQL> SELECT *
+  2  FROM ITEM
+  3  WHERE PRICE > 500;
+
+ID    NAME                 TYPE                      PRICE QUALITY    ITEM_PAC  
+----- -------------------- -------------------- ---------- ---------- --------  
+I2    Kajukatri            Mithai                     1000 Verygood   15/01/16  
+I5    Vanilla_cack         Bakery                     2000 Good       01/01/16  
+
+SQL> DESCRIBE ITEM;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(5)
+ NAME                                               VARCHAR2(20)
+ TYPE                                               VARCHAR2(20)
+ PRICE                                              NUMBER(10,2)
+ QUALITY                                            VARCHAR2(10)
+ ITEM_PACK_DATE                                     DATE
+
+SQL> SELECT *
+  2  FROM ITEM
+  3  WHERE PRICE > 500;
+
+ID    NAME                 TYPE                      PRICE QUALITY    ITEM_PAC  
+----- -------------------- -------------------- ---------- ---------- --------  
+I2    Kajukatri            Mithai                     1000 Verygood   15/01/16  
+I5    Vanilla_cack         Bakery                     2000 Good       01/01/16  
+
+SQL> SELECT DISTINCT CITY
+  2  FROM CUST_MASTER;
+FROM CUST_MASTER
+     *
+ERREUR à la ligne 2 :
+ORA-00942: Table ou vue inexistante 
+
+
+SQL> SELECT DISTINCT CITY
+  2  FROM CUSTOMER_MASTER;
+
+CITY                                                                            
+--------------------                                                            
+Ahmedabad                                                                       
+Banaras                                                                         
+Mumbai                                                                          
+Delhi                                                                           
+
+SQL> SELECT TABLE_NAME
+  2  FROM USER_TABLES;
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+ITEM_DETAIL                                                                     
+CUSTOMER_MASTER                                                                 
+CUSTOMER_DETAIL                                                                 
+PERSON_MASTER                                                                   
+PERSON                                                                          
+BRANCH_MASTER                                                                   
+BANK_BRANCH                                                                     
+BRANCH_INFO                                                                     
+JOB                                                                             
+EMPLOYEE                                                                        
+DEPOSIT                                                                         
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+SUPPLIER                                                                        
+CUST                                                                            
+SUPPLIER_TWO                                                                    
+BRANCH                                                                          
+CUSTOMERS                                                                       
+BORROW                                                                          
+ITEM                                                                            
+
+18 lignes sélectionnées.
+
+SQL> SELECT TABLE_NAME
+  2  FROM USER_TABLES;
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+ITEM_DETAIL                                                                     
+CUSTOMER_MASTER                                                                 
+CUSTOMER_DETAIL                                                                 
+PERSON_MASTER                                                                   
+PERSON                                                                          
+BRANCH_MASTER                                                                   
+BANK_BRANCH                                                                     
+BRANCH_INFO                                                                     
+JOB                                                                             
+EMPLOYEE                                                                        
+DEPOSIT                                                                         
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+SUPPLIER                                                                        
+CUST                                                                            
+SUPPLIER_TWO                                                                    
+BRANCH                                                                          
+CUSTOMERS                                                                       
+BORROW                                                                          
+ITEM                                                                            
+
+18 lignes sélectionnées.
+
+SQL> SELECT DISTINCT CITY
+  2  FROM CUSTOMER_MASTER;
+
+CITY                                                                            
+--------------------                                                            
+Ahmedabad                                                                       
+Banaras                                                                         
+Mumbai                                                                          
+Delhi                                                                           
+
+SQL> SELECT CNAME
+  2  FROM DEPOSIT
+  3  WHERE AMOUNT > 4000;
+
+CNAME                                                                           
+--------------------                                                            
+Anil                                                                            
+Sunil                                                                           
+Jay                                                                             
+Vijay                                                                           
+Keyur                                                                           
+Mayur                                                                           
+KRANTI                                                                          
+MINU                                                                            
+
+8 lignes sélectionnées.
+
+SQL> SELECT *
+  2  FROM EMPLOYEE
+  3  WHERE EMP_NAME LIKE 'A%';
+
+    EMP_NO EMP_NAME                EMP_SAL   EMP_COMM    DEPT_NO                
+---------- -------------------- ---------- ---------- ----------                
+       103 Adama                      1100          0         20                
+       104 Aman                       3000         15         10                
+       105 Anita                      5000       5000         10                
+       107 Anamika                    2975          3                           
+
+SQL> SELECT EMP_NAME AS EMPLOYEE_NAME,
+  2         EMP_SAL
+  3  FROM EMPLOYEE
+  4  WHERE DEPT_NO = 20;
+
+EMPLOYEE_NAME           EMP_SAL                                                 
+-------------------- ----------                                                 
+Adama                      1100                                                 
+
+SQL> SELECT *
+  2  FROM JOB
+  3  WHERE MIN_SAL > 4000;
+
+JOB_ID     JOB_NAME                          MIN_SAL    MAX_SAL                 
+---------- ------------------------------ ---------- ----------                 
+MK_MGR     Marketing manager                    9000      15000                 
+FI_MGR     Finance manager                      8200      12000                 
+FI_ACC     Account                              4200       9000                 
+LEC        Lecturer                             6000      17000                 
+
+SQL> SELECT A_NO, AMOUNT
+  2  FROM DEPOSIT
+  3  WHERE DATE BETWEEN TO_DATE('01-01-2006','DD-MM-YYYY')
+  4                 AND TO_DATE('25-07-2006','DD-MM-YYYY');
+WHERE DATE BETWEEN TO_DATE('01-01-2006','DD-MM-YYYY')
+      *
+ERREUR à la ligne 3 :
+ORA-00936: expression absente 
+
+
+SQL> SELECT A_NO, AMOUNT
+  2  FROM DEPOSIT
+  3  WHERE ADATE BETWEEN TO_DATE('01-01-2006','DD-MM-YYYY')
+  4                  AND TO_DATE('25-07-2006','DD-MM-YYYY');
+WHERE ADATE BETWEEN TO_DATE('01-01-2006','DD-MM-YYYY')
+      *
+ERREUR à la ligne 3 :
+ORA-00904: "ADATE" : identificateur non valide 
+
+
+SQL> DESCRIBE DEPOSIT;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ A_NO                                      NOT NULL NUMBER
+ CNAME                                              VARCHAR2(20)
+ BNAME                                              VARCHAR2(20)
+ AMOUNT                                             NUMBER(10,2)
+ DEPOSIT_DATE                                       DATE
+
+SQL> SELECT A_NO, AMOUNT
+  2  FROM DEPOSIT
+  3  WHERE ADATE BETWEEN TO_DATE('01-01-2006','DD-MM-YYYY')
+  4                  AND TO_DATE('25-07-2006','DD-MM-YYYY');
+WHERE ADATE BETWEEN TO_DATE('01-01-2006','DD-MM-YYYY')
+      *
+ERREUR à la ligne 3 :
+ORA-00904: "ADATE" : identificateur non valide 
+
+
+SQL> DESCRIBE DEPOSIT;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ A_NO                                      NOT NULL NUMBER
+ CNAME                                              VARCHAR2(20)
+ BNAME                                              VARCHAR2(20)
+ AMOUNT                                             NUMBER(10,2)
+ DEPOSIT_DATE                                       DATE
+
+SQL> UPDATE ITEM
+  2  SET QUALITY = 'Verygood'
+  3  WHERE QUALITY = 'Good';
+
+2 lignes mises à jour.
+
+SQL> DELETE FROM ITEM
+  2  WHERE PRICE = 50;
+
+1 ligne supprimée.
+
+SQL> COMMIT;
+
+Validation effectuée.
+
+SQL> UPDATE CUSTOMER_MASTER
+  2  SET ADDRESS1 = 'CG Road'
+  3  WHERE CUST_NAME = 'Priya';
+
+1 ligne mise à jour.
+
+SQL> DELETE FROM CUSTOMER_MASTER
+  2  WHERE PH_NO = '7898452034';
+
+1 ligne supprimée.
+
+SQL> COMMIT;
+
+Validation effectuée.
+
+SQL> UPDATE PERSON
+  2  SET CITY = 'Kolkata'
+  3  WHERE FNAME = 'Sandip'
+  4  AND CITY = 'Pune';
+
+0 lignes mises à jour.
+
+SQL> SELECT *
+  2  FROM PERSON
+  3  WHERE SALARY > 6000;
+
+ PERSON_ID FNAME                LNAME                CITY                       
+---------- -------------------- -------------------- --------------------       
+    SALARY STATE                BIRTHDAT PINCODE                                
+---------- -------------------- -------- ----------                             
+         1 Sneha                Sheth                Rajkot                     
+     10000                                                                      
+                                                                                
+         3 Riya                 Gajar                Pune                       
+      8000                                                                      
+                                                                                
+         5 Alpesh               Prajapati            Mumbai                     
+     20000                                                                      
+                                                                                
+
+SQL> COMMIT;
+
+Validation effectuée.
+
+SQL> SELECT *
+  2  FROM BANK_BRANCH
+  3  ORDER BY BRANCH_NAME;
+
+BRANC BRANCH_NAME          BRANCH_ADDRESS                                       
+----- -------------------- --------------------------------------------------   
+BRANCH_CITY          BRANCH_STATE                   BRANCH_O PINCODE            
+-------------------- ------------------------------ -------- ----------         
+B001  BOI                  JagnathRoad                                          
+Rajkot               Delhi                          22/03/15                    
+                                                                                
+B004  DenaBank             CGRoad                                               
+Ahmedabad            Gujarat                        20/09/12 360006             
+                                                                                
+B002  SBI                  Boriwali Road                                        
+Mumbai               Maharashtra                    12/01/00                    
+                                                                                
+
+BRANC BRANCH_NAME          BRANCH_ADDRESS                                       
+----- -------------------- --------------------------------------------------   
+BRANCH_CITY          BRANCH_STATE                   BRANCH_O PINCODE            
+-------------------- ------------------------------ -------- ----------         
+B003  Union                AgraRoad                                             
+Agra                 U.P                            04/11/15                    
+                                                                                
+
+SQL> SELECT BRANCH_NAME,
+  2         BRANCH_ADDRESS,
+  3         BRANCH_CITY
+  4  FROM BANK_BRANCH;
+
+BRANCH_NAME          BRANCH_ADDRESS                                             
+-------------------- --------------------------------------------------         
+BRANCH_CITY                                                                     
+--------------------                                                            
+BOI                  JagnathRoad                                                
+Rajkot                                                                          
+                                                                                
+SBI                  Boriwali Road                                              
+Mumbai                                                                          
+                                                                                
+Union                AgraRoad                                                   
+Agra                                                                            
+                                                                                
+
+BRANCH_NAME          BRANCH_ADDRESS                                             
+-------------------- --------------------------------------------------         
+BRANCH_CITY                                                                     
+--------------------                                                            
+DenaBank             CGRoad                                                     
+Ahmedabad                                                                       
+                                                                                
+
+SQL> SELECT SUM(AMOUNT) AS TOTAL_DEPOSIT
+  2  FROM DEPOSIT;
+
+TOTAL_DEPOSIT                                                                   
+-------------                                                                   
+        53500                                                                   
+
+SQL> SELECT COUNT(*) AS TOTAL_CUSTOMERS
+  2  FROM CUSTOMERS;
+
+TOTAL_CUSTOMERS                                                                 
+---------------                                                                 
+             10                                                                 
+
+SQL> COMMIT;
+
+Validation effectuée.
+
+SQL> SPOOL OFF;
